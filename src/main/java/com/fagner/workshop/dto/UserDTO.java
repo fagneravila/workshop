@@ -3,6 +3,7 @@ package com.fagner.workshop.dto;
 import com.fagner.workshop.domain.User;
 
 import java.io.Serializable;
+import java.util.Optional;
 
 public class UserDTO implements Serializable {
 
