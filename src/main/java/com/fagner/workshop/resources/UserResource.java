@@ -47,6 +47,14 @@ public class UserResource {
          return  ResponseEntity.created(uri).build();
     }
 
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> delete(@PathVariable String id){
+        service.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+
+
     /* public ResponseEntity<List<User>> findAll(){
        User fagner = new User("1", "Fagner", "fagner.avila@gmail");
         User avila = new User("2", "agner", "agner.avila@gmail");
