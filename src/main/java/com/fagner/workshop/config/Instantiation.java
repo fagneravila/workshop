@@ -2,6 +2,7 @@ package com.fagner.workshop.config;
 
 import com.fagner.workshop.domain.Post;
 import com.fagner.workshop.domain.User;
+import com.fagner.workshop.dto.AuthorDTO;
 import com.fagner.workshop.repository.PostRepository;
 import com.fagner.workshop.repository.UseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,11 +37,13 @@ public class Instantiation implements CommandLineRunner {
         User bob = new User(null, "Bob Grey", "bob@gmail.com");
         useRepository.saveAll(Arrays.asList(maria,alex,bob));
 
-        Post p1 = new Post(null, sdf.parse("30/08/2022"),"Partiu viagem", "Vou viajar para sao paulo", maria );
-        Post p2 = new Post(null, sdf.parse("30/08/2022"),"Partiu viagem", "tou bem", maria );
+        Post p1 = new Post(null, sdf.parse("30/08/2022"),"Partiu viagem", "Vou viajar para sao paulo",new AuthorDTO(maria));
+        Post p2 = new Post(null, sdf.parse("30/08/2022"),"Partiu viagem", "tou bem",new AuthorDTO(maria) );
 
         postRepository.saveAll(Arrays.asList(p1,p2));
 
+        maria.getPosts().addAll(Arrays.asList(p1,p1));
+        useRepository.save(maria);
 
     }
 }
