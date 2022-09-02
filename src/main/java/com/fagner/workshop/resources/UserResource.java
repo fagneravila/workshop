@@ -1,5 +1,6 @@
 package com.fagner.workshop.resources;
 
+import com.fagner.workshop.domain.Post;
 import com.fagner.workshop.domain.User;
 import com.fagner.workshop.dto.UserDTO;
 import com.fagner.workshop.services.UserService;
@@ -59,6 +60,15 @@ public class UserResource {
         user.setId(id);
         service.update(user);
         return ResponseEntity.noContent().build();
+    }
+
+
+    @GetMapping(value = "/{id}/posts")
+    public ResponseEntity<List<Post>> findPost(@PathVariable String id){
+
+        User obj = service.findById(id);
+
+        return ResponseEntity.ok().body(obj.getPosts());
     }
 
 
