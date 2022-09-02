@@ -3,6 +3,7 @@ package com.fagner.workshop.config;
 import com.fagner.workshop.domain.Post;
 import com.fagner.workshop.domain.User;
 import com.fagner.workshop.dto.AuthorDTO;
+import com.fagner.workshop.dto.CommentDTO;
 import com.fagner.workshop.repository.PostRepository;
 import com.fagner.workshop.repository.UseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,13 @@ public class Instantiation implements CommandLineRunner {
 
         Post p1 = new Post(null, sdf.parse("30/08/2022"),"Partiu viagem", "Vou viajar para sao paulo",new AuthorDTO(maria));
         Post p2 = new Post(null, sdf.parse("30/08/2022"),"Partiu viagem", "tou bem",new AuthorDTO(maria) );
+
+        CommentDTO c1 = new CommentDTO("Boa Viagem!",sdf.parse("30/08/2022"), new AuthorDTO(alex));
+        CommentDTO c2 = new CommentDTO("Aproveite",sdf.parse("20/08/2022"), new AuthorDTO(bob));
+        CommentDTO c3 = new CommentDTO("Tenha um otimo dia!",sdf.parse("25/08/2022"), new AuthorDTO(alex));
+
+        p1.getComments().addAll(Arrays.asList(c1,c2));
+        p2.getComments().addAll(Arrays.asList(c3));
 
         postRepository.saveAll(Arrays.asList(p1,p2));
 
